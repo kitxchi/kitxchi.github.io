@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>Franek GG site</title>
+        <style>
+          html{
+               text-align:center;
+               background-color:#424242;
+               color:white;
+               font-family: "Lato", sans-serif;
+               margin-top: 30px;
+               font-size: 20px;
+          }
+          h1{
+            font-size: 54px;
+          }
+          h3{
+            color:#eac1f7;
+            font-size: 30px;
+            }
+          a{
+            color: #eac1f7;
+          }
+          div {
+            width: 150px;
+            height:150px;
+            border: 1px solid black;
+            margin: 10px;
+            padding: 5px;
+            display: inline-block;
+            text-align: center;
+            background-color:#b5e089;
+          }
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <h3>onMouseDown</h3>
+      <p id="myP" onmousedown="mouseDown()" onmouseup="mouseUp()">
+        Funkcja onMouseDown odpowiada za zmiane koloru tego tekstu na czerwony po naciśnięciu.
+        Funkcja onMouseUp przywraca spowrotem biały kolor po puszczeniu przycisku.
+        </p>
+        
+        <script>
+        function mouseDown() {
+          document.getElementById("myP").style.color = "red";
+        }
+        function mouseUp() {
+          document.getElementById("myP").style.color = "white";
+        }
+        </script>
+        <br><br>
+      <a href="index.html">Powrót</a>
+    </body>
+</html>
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odbij jajo</title>
+    <style>
+        body {
+            background-color: #424242;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            justify-content: center;
+        }
+        canvas {
+            border: 8px solid #eac1f7;
+            border-radius:20px;
+            background-color: #3d3b3d;
+        }
+        #message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+          color: red; /* Kolor tekstu */
+}
+        h1{
+            font-size: 54px;
+            color:#eac1f7;
+        }
+        button{
+            border: 2px solid #eac1f7;
+            background-color: #424242; 
+            color: #eac1f7;
+            border-radius:20px;
+        }
+        button:active{
+            border: 2px solid #e26363;
+            background-color: #424242; 
+            color: #e26363;
+        }
+    </style>
+        <script>
+            function refreshPage {
+                location.reload();
+            }
+        </script>
+</head>
+<body>
+    <h1>Odbij jajo</h1>
+    <button onclick="refreshPage">Odśwież stronę</button>
+    <br><br>
+    <div id="message" style="display:none;"></div>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="message"></div>
+    <script src="game.js"></script>
+</body>
+</html>

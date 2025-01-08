@@ -1,0 +1,116 @@
+<!DOCTYPE html> 
+<html lang="pl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operatory w PHP</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            margin: 20px;
+            background-color: #424242;
+            width: 900px;
+            margin: 0 auto;
+        }
+        h1{
+            color: #eac1f7;
+            text-align: center;
+        }
+        h2{
+            color:white;
+            text-align: center;
+        }
+        pre {
+            background-color: #424242;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .example {
+            background-color: #eaf1f8;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .code {
+            font-family: monospace;
+            background-color: #f4f4f4;
+            padding: 5px;
+        }
+    </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <h1>Operatorzy w PHP</h1><br><br>
+
+    <h2>1. Operatory arytmetyczne</h2>
+    
+    <div class="example">
+        <p>Operatory arytmetyczne wykonują podstawowe operacje matematyczne:</p>
+        <pre class="code">
+$a = 10;
+$b = 5;
+$sum = $a + $b; // Wynik: 15
+$difference = $a - $b; // Wynik: 5
+$product = $a * $b; // Wynik: 50
+$quotient = $a / $b; // Wynik: 2
+$remainder = $a % $b; // Wynik: 0
+$exponentiation = $a ** $b; // Wynik: 100000
+        </pre>
+    </div>
+    <h2>2. Operatory porównania</h2>
+    <div class="example">
+        <p>Operatory porównania służą do porównywania wartości:</p>
+        <pre class="code">
+$isEqual = ($a == $b); // Wynik: false
+$isIdentical = ($a === $b); // Wynik: false
+$isNotEqual = ($a != $b); // Wynik: true
+$isNotIdentical = ($a !== $b); // Wynik: true
+$isGreaterThan = ($a &gt; $b); // Wynik: true
+$isLessThan = ($a < $b); // Wynik: false
+$isGreaterThanOrEqual = ($a &gt;= $b); // Wynik: true
+$isLessThanOrEqual = ($a <= $b); // Wynik: false
+        </pre>
+    </div>
+    <h2>3. Operatory logiczne</h2>
+    <div class="example">
+        <p>Operatory logiczne wykonują operacje na wartościach boolean:</p>
+        <pre class="code">
+$and = ($a &gt; 5 &amp;&amp; $b < 10); // Wynik: true
+$or = ($a &gt; 5 || $b < 10);  // Wynik: true
+$not = !($a &gt; 5);           // Wynik: false
+        </pre>
+    </div>
+    <h2>4. Operatory przypisania</h2>
+    <div class="example">
+        <p>Operatory przypisania służą do przypisywania wartości do zmiennych:</p>
+        <pre class="code">
+$x = 5;
+$x += 2;  // Wynik: 7
+$x -= 3;  // Wynik: 4
+$x *= 4;  // Wynik: 16
+$x /= 2;  // Wynik: 8
+$x %= 3;  // Wynik: 2
+$x .= " test"; // Wynik: 2 test
+        </pre>
+    </div>
+    <h2>5. Operatory inkrementacji i dekrementacji</h2>
+    <div class="example">
+        <p>Operatory inkrementacji i dekrementacji zwiększają lub zmniejszają wartość zmiennej o 1:</p>
+        <pre class="code">
+$y = 1;
+$y++; // Wynik: 2 (inkrementacja)
+$y--; // Wynik: 1 (dekrementacja)
+        </pre>
+    </div>
+    <h2>6. Operator typu (rzutowanie)</h2>
+    <div class="example">
+        <p>Rzutowanie pozwala na konwersję jednego typu zmiennej na inny typ:</p>
+        <pre class="code">
+$z = (int) 3.14;  // Wynik: 3
+$w = (bool) 1;    // Wynik: true
+        </pre>
+    </div>
+  <br><br>
+
+</body></html>
