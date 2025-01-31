@@ -1,0 +1,27 @@
+@font-face {
+  font-family: matrix;
+  src: url(font/kropki.ttf);
+}
+body {
+    background: black;
+  }
+  
+  span {
+    color: rgb(148, 238, 139);
+    font-family: matrix;
+  }
+  .blinker {
+    opacity: 1;
+    margin-bottom: -2px;
+    height: 15px;
+    margin-left: -5px;
+    border-left: 7px solid rgb(148, 238, 139);
+    animation: blinker 0.9s steps(2, start) infinite;
+  }
+  
+  @keyframes blinker {
+    to { 
+      visibility: hidden; 
+    }
+  }
+  
