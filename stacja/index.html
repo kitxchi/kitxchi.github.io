@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacja paliw</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Całodobowa Stacja Paliw</h1>
+    </header>
+    <nav>
+        <a href="obliczenia.html"><img src="image/znak.png" alt="Obliczenia"></a>
+        <a href="kwerendy.txt">Pobierz dokumenty</a>
+    </nav>
+    <main>
+        <section id="lewy">
+            <h2>Orientacyjny koszt paliwa</h2>
+            <form>
+                <label for="rodzaj">Rodzaj paliwa (1-benzyna, 2-olej napędowy):</label>
+                <input type="number" id="rodzaj" min="1" max="2" required><br>                
+
+                <label for="ilosc">Ile litrów?</label>
+                <input type="number" id="ilosc" required><br>
+
+                <label for="kolor">Wybierz kolor:</label>
+                <select id="kolor">
+                    <option value="czarny">Czarny</option>
+                    <option value="szary">Szary</option>
+                    <option value="biały">Biały</option>
+                    <option value="czerwony">Czerwony</option>
+                    <option value="niebieski">Niebieski</option>
+                    <option value="zielony">Zielony</option>
+                    <option value="fioletowy">Fioletowy</option>
+                    <option value="różowy">Różowy</option>
+                </select><br>
+
+                <label for="marka">Wybierz markę samochodu:</label>
+                <select id="marka">
+                    <option value="toyota">Toyota</option>
+                    <option value="ford">Ford</option>
+                    <option value="volkswagen">Volkswagen</option>
+                    <option value="bmw">BMW</option>
+                    <option value="audi">Audi</option>
+                    <option value="honda">Honda</option>
+                    <option value="hyundai">Hyundai</option>
+                </select><br>
+
+                <button type="button" onclick="oblicz()">OBLICZ</button>
+            </form>
+            <p id="wynik"></p>
+        </section>
+        <section id="prawy">
+            <img id="samochod" src="image/samochod.png" alt="Samochód na stacji">
+        </section>
+    </main>
+    <footer>
+        <p>Stronę opracował: franekgg</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
