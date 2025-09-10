@@ -30,7 +30,7 @@
 }
  html{
      overflow: hidden;
-     background: url('image/pokemon.gif') no-repeat center center fixed;
+     background: url('image/1.gif') no-repeat center center fixed;
      background-size: cover;
      height: 100%;
  }
@@ -126,7 +126,6 @@
   width: 140px;
 }
 
-/* === perspective hover */
 .perspective-hover {
   display: inline-block;
   transform-style: preserve-3d;
@@ -154,9 +153,6 @@
   z-index: -1;
   pointer-events: none;
 }
-
-/* test */
-
 h1, h2, h3, .home{
     font-weight: bold;
     font-family: 'popstarpop Regular';
@@ -218,4 +214,5 @@ h1, h2, h3, .home{
     to {
       background-position: 200% 0;
     }
+
   }
