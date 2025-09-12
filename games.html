@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>KTX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="image/icon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <h1>
+            <a href="index.html" class="home">KTX Penthouse</a>
+        </h1>
+        <a href="https://github.com/kitxchi" class="nav">GitHub</a> | 
+        <a href="fav.html" class="nav">Recommended</a> | 
+        <a href="daily.html" class="nav">Daily stuff</a> | 
+        <a href="tech.html" class="nav">Tech collection</a> | 
+        <a href="games.html" class="nav">Game collection</a>
+        <hr>
+        <p style="font-size:10px; color:rgb(219, 219, 219)">Copyright (c) kitxchi 2024-2077</p>
+        <br>         
+        <h2>Games collection</h2>
+        <h4>All games are physical versions<br>Click on the <a class="nav">console name</a> to see games</h4>
+        <div class="device nav" data-id="1">Playstation 3</div>
+        <div class="specs" id="specs-1">
+        Assassin’s Creed: Brotherhood<br>
+        Grand Theft Auto IV<br>
+        </div>
+        <div class="device nav" data-id="2">Playstation 4</div>
+        <div class="specs" id="specs-2">
+        Need For Speed Heat<br>
+        Spider-Man<br>
+        Battlefield 1<br>
+        Uncharted: The Lost Legacy<br>
+        Maria Trilogy<br>
+        Killzone Shadow Fall<br>
+        Cyberpunk 2077<br>
+        </div>
+        <div class="device nav" data-id="3">Playstation 5</div>
+        <div class="specs" id="specs-3">
+        Hogwarts legacy<br>
+        Dead Island 2<br>
+        Saints Row 2022<br>
+        </div>
+        <div class="device nav" data-id="4">Playstation Portable</div>
+        <div class="specs" id="specs-4">
+        NFS: Underground Rivals (without cover)<br>
+        Medal of Honor Heroes (without cover)<br>
+        Killzone: Liberation<br>
+        Resistance: Retribution<br>
+        LittleBigPlanet<br>
+        Ben 10 Alien Force<br>
+        Driver 76<br>
+        Coded Arms<br>
+        Ben 10 Protector of Earth (without box)<br>
+        LEGO Pirates of the Caribbean (without box)<br>
+        </div>
+        <div class="device nav" data-id="5">PC</div>
+        <div class="specs" id="specs-5">
+        Max Payne 2: The Fall of Max Payne<br>
+        Max Payne<br>
+        Far Cry 2<br>
+        Far Cry<br>
+        Wolfenstein The New Order<br>
+        Crysis 3<br>
+        Crysis 2<br>
+        Crysis<br>
+        Crysis Warhead<br>
+        Crysis Wars<br>
+        Call Of Duty 2<br>
+        Medal of Honor Allied Assault (with two addons)<br>
+        Medal of Honor Pacific Assault Director's Edition<br>
+        Medal of Honor Airborne<br>
+        Tom Clancy's Rainbow Six Vegas<br>
+        Tom Clancy's Rainbow Six Vegas 2<br>
+        GTA San Andreas<br>
+        GTA 4 The Complete Edition<br>
+        S.T.A.L.K.E.R.: Shadow of Chernobyl<br>
+        S.T.A.L.K.E.R.: clear sky<br>
+        S.T.A.L.K.E.R.: Call of Pripyat<br>
+        Mafia 1<br>
+        </div>
+    </div>
+    <script src="script.js"></script>
+        <script>
+const devices = document.querySelectorAll('.device');
+const specs = document.querySelectorAll('.specs');
+
+devices.forEach(device => {
+  device.addEventListener('click', () => {
+    const id = device.getAttribute('data-id');
+    const isThreeDigit = /^1\d\d$/.test(id); // czy kliknięty jest 1XX
+
+    specs.forEach(s => {
+      const otherId = s.id.replace('specs-', '');
+      const otherIsThreeDigit = /^1\d\d$/.test(otherId);
+
+      if (s.id === `specs-${id}`) {
+        // Toggle klikniętego
+        if (s.classList.contains('open')) {
+          s.classList.remove('open');
+          s.classList.add('closing');
+          setTimeout(() => s.classList.remove('closing'), 10);
+        } else {
+          s.classList.add('open');
+        }
+      } else {
+        // Zamykamy tylko w obrębie grupy
+        if ((isThreeDigit && otherIsThreeDigit) || (!isThreeDigit && !otherIsThreeDigit)) {
+          s.classList.remove('open');
+          s.classList.add('closing');
+          setTimeout(() => s.classList.remove('closing'), 10);
+        }
+      }
+    });
+  });
+});
+      </script>   
+</body>
+</html>

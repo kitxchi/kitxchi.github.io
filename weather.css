@@ -1,0 +1,67 @@
+/* Weather KTX - kitxchi 2024-2025 */
+
+#weather-widget-container{
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto;
+  font-family: "Quicksand", sans-serif;
+  color: rgb(255, 255, 255);
+}
+#weather-search-box{
+  margin-bottom: 10px;
+}
+#weather-input{
+  padding: 6px 10px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background: #00000000;
+  color: rgb(255, 255, 255);
+  width: 180px;
+  outline: none;
+  text-align: center;
+}
+#weather-button{
+  padding: 6px 10px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background: #00000000;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-left: 5px;
+  transition: 0.2s;
+}
+#weather-button:hover{
+  filter: brightness(1.8);
+  color: gray;
+  background: #222;
+  transform: scale(1.05);
+  box-shadow: 0 0 4px rgb(255, 255, 255);
+  transition: all 0.3s ease;
+}
+#weather-card{
+  display: none;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+#weather-city{
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+#weather-icon{
+  font-size: 40px;
+  margin: 5px 0;
+}
+#weather-temp{
+  font-size: 28px;
+  font-weight: bold;
+}
+#weather-desc, #weather-wind{
+  font-size: 14px;
+  margin-top: 3px;
+}
