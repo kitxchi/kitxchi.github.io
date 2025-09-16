@@ -30,7 +30,7 @@
 }
  html{
      overflow: hidden;
-     background: url('image/777.gif') no-repeat center center fixed;
+     background: url('image/pokemon.gif') no-repeat center center fixed;
      background-size: cover;
      height: 100%;
  }
@@ -229,4 +229,5 @@ h1, h2, h3, .home{
     }
 
   }
+
 
