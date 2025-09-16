@@ -230,7 +230,7 @@ h1, h2, h3, .home{
 
   }
 
-#nav-button{
+.nav-button{
   padding: 6px 10px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
@@ -240,7 +240,7 @@ h1, h2, h3, .home{
   margin-left: 5px;
   transition: 0.2s;
 }
-#nav-button:hover{
+.nav-button:hover{
   filter: brightness(1.8);
   color: gray;
   text-shadow:
@@ -248,4 +248,5 @@ h1, h2, h3, .home{
     0 0 10px white;
   transform: scale(1.05);
   transition: all 0.3s ease;
+
 }
