@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>KTX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../image/icon.png">
+    <link rel="stylesheet" href="../style2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <h1>
+            <a href="index.html" class="home">KTX School</a>
+        </h1>
+        <a href="index.html" class="nav">Wróć do szkolnych rzeczy ;(</a>
+        <hr>
+        <p style="font-size:10px; color:rgb(219, 219, 219)">Copyright (c) kitxchi 2024-2025</p>
+        <br>              
+        <h2>Operatorzy</h2><br>
+            <!-- Sekcja operatora arytmetycznego -->
+    <section id="arith-section">
+        <h3>Operator arytmetyczny (dodawanie)</h3>
+        <p><em>Operator dodawania sumuje dwie liczby.</em></p>
+        <label for="arith-num1">Liczba 1:</label>
+        <input class="input-text" type="number" id="arith-num1" value="5" />
+        <label for="arith-num2">Liczba 2:</label>
+        <input class="input-text" type="number" id="arith-num2" value="3" />
+        <button type="button" onclick="showArithmetic()" class="nav-button">Pokaż wynik</button>
+        <div id="arith-result"></div>
+    </section><br>
+    <textarea class="area-text" rows="6" cols="60">
+function showArithmetic() {
+    const a = Number(document.getElementById('arith-num1').value);
+    const b = Number(document.getElementById('arith-num2').value);
+    const result = a + b;
+    document.getElementById('arith-result').textContent = `${a} + ${b} = ${result}`;
+}
+</textarea>
+
+    <!-- Sekcja operatora logicznego -->
+    <section id="logic-section">
+        <h3>Operator logiczny (AND - &&)</h3>
+        <p><em>Operator AND zwraca true, jeśli oba wyrażenia są prawdziwe.</em></p>
+        <label for="logic-val1">Wartość 1:</label>
+        <select id="logic-val1" class="input-text">
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
+        <label for="logic-val2">Wartość 2:</label>
+        <select id="logic-val2" class="input-text">
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select>
+        <button type="button" onclick="showLogic()" class="nav-button">Pokaż wynik</button>
+        <div id="logic-result"></div>
+    </section><br>
+    <textarea class="area-text" rows="6" cols="60">
+function showLogic() {
+    const val1 = document.getElementById('logic-val1').value === 'true';
+    const val2 = document.getElementById('logic-val2').value === 'true';
+    const result = val1 && val2;
+    document.getElementById('logic-result').textContent = `${val1} && ${val2} = ${result}`;
+}
+</textarea>
+
+    <!-- Sekcja operatora bitowego -->
+    <section id="bitwise-section">
+        <h3>Operator bitowy (OR - |)</h3>
+        <p><em>Operator OR bitowy wykonuje operację OR na bitach liczb.</em></p>
+        <label for="bitwise-num1">Liczba 1:</label>
+        <input class="input-text" type="number" id="bitwise-num1" value="5" />
+        <label for="bitwise-num2">Liczba 2:</label>
+        <input class="input-text" type="number" id="bitwise-num2" value="3" />
+        <button type="button" onclick="showBitwise()" class="nav-button">Pokaż wynik</button>
+        <div id="bitwise-result"></div>
+    </section><br>
+    <textarea class="area-text" rows="7" cols="60">
+function showBitwise() {
+    const a = Number(document.getElementById('bitwise-num1').value);
+    const b = Number(document.getElementById('bitwise-num2').value);
+    const result = a | b;
+    document.getElementById('bitwise-result').textContent = `${a} | ${b} = ${result}`;
+}
+</textarea>
+
+    <!-- Sekcja operatora przypisania -->
+    <section id="assign-section">
+        <h3>Operator przypisania (+=)</h3>
+        <p><em>Operator += dodaje wartość do zmiennej i przypisuje wynik do tej zmiennej.</em></p>
+        <label for="assign-x">Wartość x:</label>
+        <input class="input-text" type="number" id="assign-x" value="10" />
+        <label for="assign-add">Dodaj do x:</label>
+        <input class="input-text" type="number" id="assign-add" value="5" />
+        <button type="button" onclick="showAssign()" class="nav-button">Pokaż wynik</button>
+        <div id="assign-result"></div>
+    </section><br>
+    <textarea class="area-text" rows="7" cols="60">
+function showAssign() {
+    let x = Number(document.getElementById('assign-x').value);
+    const add = Number(document.getElementById('assign-add').value);
+    x += add;
+    document.getElementById('assign-result').textContent = `x po x += ${add} wynosi: ${x}`;
+}
+</textarea>
+
+    <!-- Sekcja operatora porównania -->
+    <section id="compare-section">
+        <h3>Operator porownania (==)</h3>
+        <p><em>Operator == sprawdza, czy dwie wartości są równe (z konwersją typów).</em></p>
+        <label for="compare-val1">Wartość 1:</label>
+        <input class="input-text" type="text" id="compare-val1" value="5" />
+        <label for="compare-val2">Wartość 2:</label>
+        <input class="input-text" type="text" id="compare-val2" value="5" />
+        <button type="button" onclick="showCompare()" class="nav-button">Pokaż wynik</button>
+        <div id="compare-result"></div>
+    </section><br>
+    <textarea class="area-text" rows="7" cols="60">
+function showCompare() {
+    const val1 = document.getElementById('compare-val1').value;
+    const val2 = document.getElementById('compare-val2').value;
+    const result = (val1 == val2);
+    document.getElementById('compare-result').textContent = `"${val1}" == "${val2}" ? ${result}`;
+}
+</textarea>
+    <!-- Sekcja operatora łańcuchowego (konkatenacji) -->
+    <section id="concat-section">
+        <h3>Operator lancuchowy (konkatenacja)</h3>
+        <p><em>Operator + łączy dwa łańcuchy tekstowe w jeden.</em></p>
+        <label for="concat-str1">Tekst 1:</label>
+        <input class="input-text" type="text" id="concat-str1" value="Hello" />
+        <label for="concat-str2">Tekst 2:</label>
+        <input class="input-text" type="text" id="concat-str2" value="World" />
+        <button type="button" onclick="showConcat()" class="nav-button">Pokaż wynik</button>
+        <div id="concat-result"></div>
+    </section><br>
+<textarea class="area-text" rows="7" cols="60">
+function showConcat() {
+    const str1 = document.getElementById('concat-str1').value;
+    const str2 = document.getElementById('concat-str2').value;
+    const result = str1 + str2;
+    document.getElementById('concat-result').textContent = `"${str1}" + "${str2}" = "${result}"`;
+}
+</textarea>
+    </div>
+    <script>
+    // Pokazuje wynik operatora arytmetycznego (dodawanie)
+    function showArithmetic() {
+        const a = Number(document.getElementById('arith-num1').value);
+        const b = Number(document.getElementById('arith-num2').value);
+        const result = a + b;
+        document.getElementById('arith-result').textContent = `${a} + ${b} = ${result}`;
+    }
+
+    // Pokazuje wynik operatora logicznego AND (&&)
+    function showLogic() {
+        const val1 = document.getElementById('logic-val1').value === 'true';
+        const val2 = document.getElementById('logic-val2').value === 'true';
+        const result = val1 && val2;
+        document.getElementById('logic-result').textContent = `${val1} && ${val2} = ${result}`;
+    }
+
+    // Pokazuje wynik operatora bitowego OR (|)
+    function showBitwise() {
+        const a = Number(document.getElementById('bitwise-num1').value);
+        const b = Number(document.getElementById('bitwise-num2').value);
+        const result = a | b;
+        document.getElementById('bitwise-result').textContent = `${a} | ${b} = ${result}`;
+    }
+
+    // Pokazuje wynik operatora przypisania +=
+    function showAssign() {
+        let x = Number(document.getElementById('assign-x').value);
+        const add = Number(document.getElementById('assign-add').value);
+        x += add;
+        document.getElementById('assign-result').textContent = `x po x += ${add} wynosi: ${x}`;
+    }
+
+    // Pokazuje wynik operatora porównania ==
+    function showCompare() {
+        const val1 = document.getElementById('compare-val1').value;
+        const val2 = document.getElementById('compare-val2').value;
+        const result = (val1 == val2);
+        document.getElementById('compare-result').textContent = `"${val1}" == "${val2}" ? ${result}`;
+    }
+
+    // Pokazuje wynik operatora łańcuchowego (konkatenacji)
+    function showConcat() {
+        const str1 = document.getElementById('concat-str1').value;
+        const str2 = document.getElementById('concat-str2').value;
+        const result = str1 + str2;
+        document.getElementById('concat-result').textContent = `"${str1}" + "${str2}" = "${result}"`;
+    }
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

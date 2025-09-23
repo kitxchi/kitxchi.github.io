@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>KTX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../image/icon.png">
+    <link rel="stylesheet" href="../style2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <h1>
+            <a href="index.html" class="home">KTX School</a>
+        </h1>
+        <a href="index.html" class="nav">Wróć do szkolnych rzeczy ;(</a>
+        <hr>
+        <p style="font-size:10px; color:rgb(219, 219, 219)">Copyright (c) kitxchi 2024-2025</p>
+        <br>              
+        <h2>Zmienne</h2>
+        <!-- Przykład 1: Użycie const -->
+        <p style="font-size: large">1. Użycie const</p>
+            <button onclick="exampleConst()" class="nav-button">Podaj numer (const)</button>
+        <p id="resultConst"></p>
+        <textarea class="area-text" rows="10">
+function exampleConst() {
+    const x = Number(prompt("Podaj x:"));
+    const y = Number(prompt("Podaj y:"));
+    
+    const suma = x + y;
+    document.getElementById('resultConst').textContent = `Suma: ${suma}`;
+}
+</textarea>
+
+
+        <!-- Przykład 2: Użycie var -->
+        <p style="font-size: large">2. Użycie var</p>
+            <button onclick="exampleVar()" class="nav-button">Podaj numer (var)</button>
+        <p id="resultVar"></p>
+        <textarea class="area-text" rows="13">
+function exampleVar() {
+    var x = Number(prompt("Podaj x:"));
+    var y = Number(prompt("Podaj y:"));
+
+    var suma = x + y;
+    var roznica = x - y;
+
+    document.getElementById('resultVar').textContent = `Suma: ${suma}, Różnica: ${roznica}`;
+}
+</textarea>
+
+        <!-- Przykład 3: Użycie let -->
+        <p style="font-size: large">3. Użycie let</p>
+            <button onclick="exampleLet()" class="nav-button">Podaj numer (let)</button>
+        <p id="resultLet"></p>
+        <textarea class="area-text" rows="14">
+function exampleLet() {
+    let x = Number(prompt("Podaj x:"));
+    let y = Number(prompt("Podaj y:"));
+
+    let iloczyn = x * y;
+    let srednia = (x + y) / 2;
+
+    document.getElementById('resultLet').textContent = `Iloczyn: ${iloczyn}, Średnia: ${srednia}`;
+}
+</textarea>
+
+        <!-- Przykład 4: Konkatenacja -->
+        <p style="font-size: large">4. Konkatenacja</p>
+            <button onclick="exampleConcatenate()" class="nav-button">Podaj dwa numery</button>
+        <p id="resultConcat"></p>
+        <textarea class="area-text" rows="11">
+function exampleConcatenate() {
+    var x = prompt("Podaj pierwsze słowo:");
+    var y = prompt("Podaj drugie słowo:");
+
+    var wynik = "Połączone słowa: " + x + " " + y;
+    document.getElementById('resultConcat').textContent = wynik;
+}
+</textarea>
+
+        <!-- Przykład 5: Prosta suma -->
+        <p style="font-size: large">5. Prosta suma</p>
+            <button onclick="exampleSum()" class="nav-button">Podaj dwa numery do sumy</button>
+        <p id="resultSum"></p>
+        <textarea class="area-text" rows="10">
+function exampleSum() {
+    var x = Number(prompt("Podaj pierwszy numer:"));
+    var y = Number(prompt("Podaj drugi numer:"));
+
+    var suma = x + y;
+    document.getElementById('resultSum').textContent = `Suma dwóch liczb: ${suma}`;
+}
+</textarea>
+    </div>
+   <script>
+        // Przykład 1: const
+        function exampleConst() {
+            const x = Number(prompt("Podaj x:"));
+            const y = Number(prompt("Podaj y:"));
+            
+            // Użycie const do przypisania stałych wartości
+            const suma = x + y;
+            document.getElementById('resultConst').textContent = `Suma: ${suma}`;
+        }
+
+        // Przykład 2: var
+        function exampleVar() {
+            var x = Number(prompt("Podaj x:"));
+            var y = Number(prompt("Podaj y:"));
+
+            // Użycie var do zadeklarowania zmiennych
+            var suma = x + y;
+            var roznica = x - y;
+
+            document.getElementById('resultVar').textContent = `Suma: ${suma}, Różnica: ${roznica}`;
+        }
+
+        // Przykład 3: let
+        function exampleLet() {
+            let x = Number(prompt("Podaj x:"));
+            let y = Number(prompt("Podaj y:"));
+
+            // Użycie let do zadeklarowania zmiennych, które mogą się zmieniać
+            let iloczyn = x * y;
+            let srednia = (x + y) / 2;
+
+            document.getElementById('resultLet').textContent = `Iloczyn: ${iloczyn}, Średnia: ${srednia}`;
+        }
+
+        // Przykład 4: Konkatenacja
+        function exampleConcatenate() {
+            var x = prompt("Podaj pierwsze słowo:");
+            var y = prompt("Podaj drugie słowo:");
+
+            // Użycie konkatenacji
+            var wynik = "Połączone słowa: " + x + " " + y;
+            document.getElementById('resultConcat').textContent = wynik;
+        }
+
+        // Przykład 5: Prosta suma
+        function exampleSum() {
+            var x = Number(prompt("Podaj pierwszy numer:"));
+            var y = Number(prompt("Podaj drugi numer:"));
+
+            // Suma dwóch liczb
+            var suma = x + y;
+            document.getElementById('resultSum').textContent = `Suma dwóch liczb: ${suma}`;
+        }
+    </script>
+    <script src="../script.js"></script>
+</body>
+
+</html>
