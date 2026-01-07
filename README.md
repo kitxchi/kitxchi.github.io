@@ -1,4 +1,4 @@
-# KTX Website
+# School website
 <br>
 
-```Copyright (c) kitxchi 2024-2025```
+```Copyright (c) kitxchi 2026```
