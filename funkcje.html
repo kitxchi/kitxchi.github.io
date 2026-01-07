@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <title>Szkola</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="image/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="content">
+        <h1>
+            <a href="index.html" class="home">Szkola</a>
+        </h1>
+        <hr>
+        <p style="font-size:10px; color:rgb(219, 219, 219)">Copyright (c) kitxchi 2026</p>
+        <p id="czas"></p>
+        <br>         
+        <h2>Funkcje</h2>
+        <h3>1. Prompt + Alert</h3>
+                <textarea class="area-text" rows="10">
+function examplePrompt() {
+    const name = prompt("Jak masz na imię?");
+    alert("Cześć, " + name + "!");
+}
+</textarea><br>
+<button onclick="examplePrompt()" class="nav-button">Sprawdź</button><br>
+        <h3>2. Confirm</h3>
+                <textarea class="area-text" rows="10">
+function exampleConfirm() {
+    const answer = confirm("Czy lubisz JavaScript?");
+    if (answer) {
+        alert("Super, że lubisz JavaScript!");
+    } else {
+        alert("Szkoda, może się przekonasz.");
+    }
+}
+</textarea><br>
+<button onclick="exampleConfirm()" class="nav-button">Sprawdź</button><br>
+        <h3>3. ParseInt</h3>
+                <textarea class="area-text" rows="10">
+function exampleParseInt() {
+    const input = prompt("Podaj liczbę całkowitą:");
+    const number = parseInt(input);
+    alert("Wczytana liczba całkowita to: " + number);
+}
+</textarea><br>
+<button onclick="exampleParseInt()" class="nav-button">Sprawdź</button><br>
+        <h3>4. ParseFloat</h3>
+                <textarea class="area-text" rows="10">
+function exampleParseFloat() {
+    const input = prompt("Podaj liczbę zmiennoprzecinkową:");
+    const number = parseFloat(input);
+    alert("Wczytana liczba to: " + number);
+}
+</textarea><br>
+<button onclick="exampleParseFloat()" class="nav-button">Sprawdź</button><br>
+        <h3>5. Number()</h3>
+                <textarea class="area-text" rows="10">
+function exampleNumber() {
+    const input = prompt("Podaj coś do konwersji na liczbę:");
+    const number = Number(input);
+    alert("Wynik konwersji to: " + number);
+}
+</textarea><br>
+<button onclick="exampleNumber()" class="nav-button">Sprawdź</button><br>
+        <h3>6. isNaN</h3>
+                <textarea class="area-text" rows="10">
+function exampleIsNaN() {
+    const input = prompt("Podaj coś do sprawdzenia czy to liczba:");
+    if (isNaN(input)) {
+        alert("To NIE jest liczba!");
+    } else {
+        alert("To jest liczba.");
+    }
+}
+</textarea><br>
+<button onclick="exampleIsNaN()" class="nav-button">Sprawdź</button><br>
+        <h3>7. Prosta funkcja sumujaca</h3>
+                <textarea class="area-text" rows="10">
+function exampleSum() {
+    const a = parseFloat(prompt("Podaj pierwszą liczbę:"));
+    const b = parseFloat(prompt("Podaj drugą liczbę:"));
+    if (isNaN(a) || isNaN(b)) {
+        alert("Podano nieprawidłową liczbę.");
+        return;
+    }
+    alert("Suma wynosi: " + (a + b));
+}
+</textarea><br>
+<button onclick="exampleSum()" class="nav-button">Sprawdź</button><br>
+        <h3>8. Deklaracja i wyrazenie funkcyjne</h3>
+                <textarea class="area-text" rows="10">
+function printText() {
+  alert("To jest deklaracja funkcji.");
+}
+
+const printTextExpression = function() {
+  alert("To jest wyrażenie funkcji.");
+};
+</textarea><br>
+<button onclick="printText()" class="nav-button">Wywołaj deklarację funkcji</button>
+<button onclick="printTextExpression()" class="nav-button">Wywołaj wyrażenie funkcji</button><br>
+<h3>9. Funkcja strzalkowa - dodawanie liczb</h3>
+        <textarea class="area-text" rows="10">
+const dodaj = (a, b) => a + b;
+function przyklad1() {
+  const wynik = dodaj(5, 7);
+  alert(`5 + 7 = ${wynik}`);
+}
+      
+</textarea><br>
+<button onclick="przyklad1()" class="nav-button">Sprawdź</button><br>
+<h3>10. Funkcja strzalkowa - podwojenie tablicy</h3>
+        <textarea class="area-text" rows="10">
+const podwoj = arr => arr.map(x => x * 2);
+function przyklad2() {
+  const liczby = [1, 2, 3, 4];
+  const wynik = podwoj(liczby);
+  alert(`[${liczby}] → [${wynik}]`);
+}
+</textarea><br>
+<button onclick="przyklad2()" class="nav-button">Sprawdź</button><br>
+        </div>
+    </div>
+            <script src="js/scripts.js"></script>
+    <script src="js/data.js"></script>
+    <script>
+    // 1. Prompt i alert
+    function examplePrompt() {
+      const name = prompt("Jak masz na imię?");
+      alert("Cześć, " + name + "!");
+    }
+
+    // 2. Confirm
+    function exampleConfirm() {
+      const answer = confirm("Czy lubisz JavaScript?");
+      if (answer) {
+        alert("Super, że lubisz JavaScript!");
+      } else {
+        alert("Szkoda, może się przekonasz.");
+      }
+    }
+
+    // 3. parseInt - konwersja na liczbę całkowitą
+    function exampleParseInt() {
+      const input = prompt("Podaj liczbę całkowitą:");
+      const number = parseInt(input);
+      alert("Wczytana liczba całkowita to: " + number);
+    }
+
+    // 4. parseFloat - konwersja na liczbę zmiennoprzecinkową
+    function exampleParseFloat() {
+      const input = prompt("Podaj liczbę zmiennoprzecinkową:");
+      const number = parseFloat(input);
+      alert("Wczytana liczba to: " + number);
+    }
+
+    // 5. Number() - konwersja na liczbę
+    function exampleNumber() {
+      const input = prompt("Podaj coś do konwersji na liczbę:");
+      const number = Number(input);
+      alert("Wynik konwersji to: " + number);
+    }
+
+    // 6. isNaN - sprawdzanie czy wartość nie jest liczbą
+    function exampleIsNaN() {
+      const input = prompt("Podaj coś do sprawdzenia czy to liczba:");
+      if (isNaN(input)) {
+        alert("To NIE jest liczba!");
+      } else {
+        alert("To jest liczba.");
+      }
+    }
+
+    // 7. Prosta funkcja sumująca dwie liczby
+    function exampleSum() {
+      const a = parseFloat(prompt("Podaj pierwszą liczbę:"));
+      const b = parseFloat(prompt("Podaj drugą liczbę:"));
+      if (isNaN(a) || isNaN(b)) {
+        alert("Podano nieprawidłową liczbę.");
+        return;
+      }
+      alert("Suma wynosi: " + (a + b));
+    }
+
+    // 8. Deklaracja i wyrażenie funkcyjne'
+
+    // Deklaracja funkcji
+    function printText() {
+      alert("To jest deklaracja funkcji.");
+    }
+
+    // Wyrażenie funkcji przypisane do zmiennej
+    const printTextExpression = function() {
+      alert("To jest wyrażenie funkcji.");
+    };
+    // 9. funkcja strzałkowa - dodawanie liczb
+    const dodaj = (a, b) => a + b;
+    function przyklad1() {
+      const wynik = dodaj(5, 7);
+      alert(`5 + 7 = ${wynik}`);
+    }
+
+    // 10. funkcja strzałkowa - mnożenie tablicy
+    const podwoj = arr => arr.map(x => x * 2);
+    function przyklad2() {
+      const liczby = [1, 2, 3, 4];
+      const wynik = podwoj(liczby);
+      alert(`[${liczby}] → [${wynik}]`);
+    }
+    </script>
+</body>
+</html>

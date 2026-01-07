@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <title>Szkola</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="image/icon.png">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="content">
+            <h1>
+                <a href="index.html" class="home">Szkola</a>
+            </h1>
+            <hr>
+            <p style="font-size:10px; color:rgb(219, 219, 219)">Copyright (c) kitxchi 2026</p>
+            <p id="czas"></p>
+        <br>         
+        <h2>Alert</h2>
+        <h4>Naciśnij przycisk by pokazać alert</h4>
+        <button onclick="showAlert()" class="nav-button">Alert</button><br><br><br>
+        <div id="infoText" style="display:none;">
+            <p>Alert() i window.alert() to dokładnie to samo!</p>
+        </div>
+                <textarea class="area-text" rows="10">
+alert("KTX!");
+</textarea>
+    </div>
+    <script>
+        let AlertID = false;
+
+        function showAlert() {
+            alert("KTX!");
+
+            const infoText = document.createElement("p");
+            AlertID = true;
+            checkBothClicked();
+        }
+
+        function checkBothClicked() {
+            if (AlertID) {
+                document.getElementById('infoText').style.display = 'block';
+                infoTextElement.classList.add('show');
+                }
+            }
+    </script>
+    <script src="js/scripts.js"></script>
+    <script src="js/data.js"></script>
+</body>
+
+</html>
+
