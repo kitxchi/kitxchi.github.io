@@ -272,3 +272,7 @@ h1, h2, h3, .home{
   font-family: 'Inter';
   font-style: italic;
 }
+.img-border{
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 10%;
+}
