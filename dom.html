@@ -21,14 +21,16 @@
         <br>
         <h2>Document Object Model</h2>
         <h4>1. Dodawanie i usuwanie</h4>
-        <button id="add" class="nav-button">Dodaj element</button>
+        <button id="addFirst" class="nav-button">Dodaj element na początek</button>
+        <button id="add" class="nav-button">Dodaj element na koniec</button>
         <ul id="lista"></ul>
         <textarea class="area-text" rows="10">
 let licznik = 1;
 const lista = document.getElementById("lista");
 const addBtn = document.getElementById("add");
+const addFirstBtn = document.getElementById("addFirst");
 
-addBtn.addEventListener("click", function () {
+function stworzElement() {
     const li = document.createElement("li");
     li.textContent = "Element " + licznik++;
 
@@ -37,7 +39,17 @@ addBtn.addEventListener("click", function () {
         li.remove();
     });
 
-    lista.appendChild(li);
+    return li;
+}
+
+// dodawanie na koniec
+addBtn.addEventListener("click", function () {
+    lista.appendChild(stworzElement());
+});
+
+// dodawanie na początek
+addFirstBtn.addEventListener("click", function () {
+    lista.prepend(stworzElement());
 });
 </textarea><br><br>
         <h4>2. Prosty slider</h4>
@@ -72,23 +84,35 @@ function prev() {
             <script src="js/data.js"></script>
             <script>
                 /* =====================
-                   DODAWANIE / USUWANIE
-                ===================== */
-                let licznik = 1;
-                const lista = document.getElementById("lista");
-                const addBtn = document.getElementById("add");
-                
-                addBtn.addEventListener("click", function () {
-                    const li = document.createElement("li");
-                    li.textContent = "Element " + licznik++;
-                
-                    // usuwanie po kliknięciu
-                    li.addEventListener("click", function () {
-                        li.remove();
-                    });
-                
-                    lista.appendChild(li);
-                });
+   DODAWANIE / USUWANIE
+===================== */
+let licznik = 1;
+const lista = document.getElementById("lista");
+const addBtn = document.getElementById("add");
+const addFirstBtn = document.getElementById("addFirst");
+
+function stworzElement() {
+    const li = document.createElement("li");
+    li.textContent = "Element " + licznik++;
+
+    // usuwanie po kliknięciu
+    li.addEventListener("click", function () {
+        li.remove();
+    });
+
+    return li;
+}
+
+// dodawanie na koniec
+addBtn.addEventListener("click", function () {
+    lista.appendChild(stworzElement());
+});
+
+// dodawanie na początek
+addFirstBtn.addEventListener("click", function () {
+    lista.prepend(stworzElement());
+});
+
                 
                 /* =====================
                    SLIDER
@@ -118,3 +142,4 @@ function prev() {
                 </script>
 </body>
 </html>
+
