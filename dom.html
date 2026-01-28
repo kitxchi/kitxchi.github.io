@@ -57,16 +57,15 @@ addFirstBtn.addEventListener("click", function () {
         <button onclick="prev()" class="nav-button">Poprzedni</button>
         <button onclick="next()" class="nav-button">Następny</button><br><br>
         <textarea class="area-text" rows="10">
-const images = [
-    "https://picsum.photos/id/101/300/200",
-    "https://picsum.photos/id/102/300/200",
-    "https://picsum.photos/id/103/300/200",
-    "https://picsum.photos/id/104/300/200",
-    "https://picsum.photos/id/106/300/200"
-];
+const images = Array.from({ length: 10 }, () => {
+    const randomId = Math.floor(Math.random() * 1000);
+    return `https://picsum.photos/id/${randomId}/300/200`;
+});
 
 let index = 0;
 const slide = document.getElementById("slide");
+
+slide.src = images[index];
 
 function next() {
     index++;
@@ -79,6 +78,8 @@ function prev() {
     if (index < 0) index = images.length - 1;
     slide.src = images[index];
 }
+
+setInterval(next, 3000);
 </textarea><br><br>
             <script src="js/scripts.js"></script>
             <script src="js/data.js"></script>
@@ -115,31 +116,38 @@ addFirstBtn.addEventListener("click", function () {
 
                 
                 /* =====================
-                   SLIDER
-                ===================== */
-                const images = [
-                    "https://picsum.photos/id/101/300/200",
-                    "https://picsum.photos/id/102/300/200",
-                    "https://picsum.photos/id/103/300/200",
-                    "https://picsum.photos/id/104/300/200",
-                    "https://picsum.photos/id/106/300/200"
-                ];
-                
-                let index = 0;
-                const slide = document.getElementById("slide");
-                
-                function next() {
-                    index++;
-                    if (index >= images.length) index = 0;
-                    slide.src = images[index];
-                }
-                
-                function prev() {
-                    index--;
-                    if (index < 0) index = images.length - 1;
-                    slide.src = images[index];
-                }
+        SLIDER
+===================== */
+
+// generujemy 10 losowych obrazków
+const images = Array.from({ length: 10 }, () => {
+    const randomId = Math.floor(Math.random() * 1000);
+    return `https://picsum.photos/id/${randomId}/300/200`;
+});
+
+let index = 0;
+const slide = document.getElementById("slide");
+
+// ustaw pierwszy obrazek
+slide.src = images[index];
+
+function next() {
+    index++;
+    if (index >= images.length) index = 0;
+    slide.src = images[index];
+}
+
+function prev() {
+    index--;
+    if (index < 0) index = images.length - 1;
+    slide.src = images[index];
+}
+
+// automatyczne przesuwanie co 3 sekundy
+setInterval(next, 3000);
+
                 </script>
 </body>
 </html>
+
 
