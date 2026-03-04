@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <title>Szkola</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="image/icon.png">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <style>
+        table {
+            border-collapse: collapse;
+            color: white;
+            text-align: center;
+            margin: 0 auto;
+            font-size: 25px;
+            font-family: 'Inter';
+        }
+
+        td, table {
+            border: 2px solid white; 
+            padding: 5px; 
+            text-align: center;
+        }
+        .area-text {
+    display: block;
+    margin: 0 auto;
+}
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>
+                <a href="index.html" class="home">Szkola</a>
+            </h1>
+            <hr>
+            <p style="font-size:10px; color:rgb(219, 219, 219)">Copyright (c) kitxchi 2026</p>
+            <p id="czas"></p>
+        <br>              
+        <h2>Tabliczka mnozenia</h2>
+        <br><br>
+
+        <script>
+        let table = new Array(11);
+        for(let i = 0; i < table.length; i++) {
+            table[i] = new Array(11); 
+        }
+        
+        for(let row = 0; row < table.length; row++) {
+            for(let col = 0; col < table[row].length; col++) {
+                table[row][col] = row * col;
+            }
+        }
+       
+        let tabelaHTML = "<table border='1' cellpadding='8' style='border-collapse: collapse; text-align: center;'>";
+        
+        for(let row = 0; row < table.length; row++) {
+            tabelaHTML += "<tr>";
+            for(let col = 0; col < table[row].length; col++) {
+                
+                tabelaHTML += "<td>" + table[row][col] + "</td>";
+            }
+            tabelaHTML += "</tr>";
+        }
+        
+        tabelaHTML += "</table>";
+        
+        document.body.innerHTML += tabelaHTML;
+        </script>
+        <br><br><br><br>
+    </div>
+    </div>
+    <br>    
+        <textarea class="area-text" rows="12" cols="60">
+let table = new Array(11);
+for(let i = 0; i < table.length; i++) {
+    table[i] = new Array(11); 
+}
+
+for(let row = 0; row < table.length; row++) {
+    for(let col = 0; col < table[row].length; col++) {
+        table[row][col] = row * col;
+    }
+}
+</textarea>
+    <script src="js/scripts.js"></script>
+    <script src="js/data.js"></script>
+</body>
+
+</html>
+
