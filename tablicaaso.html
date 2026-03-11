@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <title>Szkola</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="image/icon.png">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <style>
+        table {
+            border-collapse: collapse;
+            color: white;
+            text-align: center;
+            margin: 0 auto;
+            font-family: 'Inter';
+        }
+
+        td, table {
+            border: 2px solid white; 
+            padding: 5px; 
+            text-align: center;
+        }
+        .area-text {
+    display: block;
+    margin: 0 auto;
+}
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>
+                <a href="index.html" class="home">Szkola</a>
+            </h1>
+            <hr>
+            <p style="font-size:10px; color:rgb(219, 219, 219)">Copyright (c) kitxchi 2026</p>
+            <p id="czas"></p>
+        <br>              
+        <h2>Tablica asocjacyjna</h2>
+        <h4>Statystyki Bohatera</h4>
+        <table id="tabela-rpg">
+            <thead>
+                <tr>
+                    <th>Atrybut</th>
+                    <th>Wartość</th>
+                </tr>
+            </thead>
+            <tbody id="body-tabeli">
+                </tbody>
+        </table>
+        <br><br>    
+        <textarea class="area-text" rows="7">
+const statystyki = {
+    "Imię": "Aragorn",
+    "Klasa": "Strażnik",
+    "Poziom": 20,
+    "Siła": 18,
+    "Zręczność": 15,
+    "Punkty Życia": 120
+};
+
+const tbody = document.getElementById('body-tabeli');
+
+for (const [klucz, wartosc] of Object.entries(statystyki)) {
+    const wiersz = document.createElement('tr');
+
+    wiersz.innerHTML = `
+        <td><strong>${klucz}</strong></td>
+        <td>${wartosc}</td>
+    `;
+
+    tbody.appendChild(wiersz);
+}
+</textarea>
+    </div><script>
+        // 1. Definiujemy "tablicę asocjacyjną" (obiekt)
+        const statystyki = {
+            "Imię": "Aragorn",
+            "Klasa": "Strażnik",
+            "Poziom": 20,
+            "Siła": 18,
+            "Zręczność": 15,
+            "Punkty Życia": 120
+        };
+
+        // 2. Pobieramy element body tabeli
+        const tbody = document.getElementById('body-tabeli');
+
+        // 3. Iterujemy po kluczach i wartościach obiektu
+        for (const [klucz, wartosc] of Object.entries(statystyki)) {
+            // Tworzymy nowy wiersz
+            const wiersz = document.createElement('tr');
+
+            // Tworzymy komórki
+            wiersz.innerHTML = `
+                <td><strong>${klucz}</strong></td>
+                <td>${wartosc}</td>
+            `;
+
+            // Dodajemy wiersz do tabeli
+            tbody.appendChild(wiersz);
+        }
+    </script>
+        <script src="js/scripts.js"></script>
+        <script src="js/data.js"></script>
+</body>
+
+</html>
+

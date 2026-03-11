@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <title>Szkola</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="image/icon.png">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <style>
+            input[type="button"] {
+  padding: 6px 10px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background: #00000036;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  margin-left: 5px;
+  transition: 0.2s;
+    }
+    input[type="text"]{
+        padding: 6px 10px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  background: #00000000;
+  color: rgb(255, 255, 255);
+  width: 180px;
+  outline: none;
+    }
+
+    #container {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      color: black;
+    }
+
+    .box {
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: 1px solid #000000;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      cursor: grab;
+      background-color: #f0f0f0; 
+    }
+
+    .color-picker {
+      display: none;
+    }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>
+                <a href="index.html" class="home">Szkola</a>
+            </h1>
+            <hr>
+            <p style="font-size:10px; color:rgb(219, 219, 219)">Copyright (c) kitxchi 2026</p>
+            <p id="czas"></p>
+        <br>              
+        <h2>Tablice array</h2>
+        <p id="tekst">Zmiana tekstu nagłówka</p>
+        <input type="button" id="btnTekst" value="Zmień tekst">
+        
+        <br><br>
+        
+        <input type="text" id="imie" placeholder="Wpisz imię">
+        <input type="button" id="btnImie" value="Pokaż imię">
+        <p id="wynik"></p>
+        
+        <hr>
+        
+        <input type="button" id="addBtn" value="Wstaw element na koniec">
+        <input type="button" id="addFrontBtn" value="Wstaw na początek">
+        
+        <div id="container">
+          <div class="box" draggable="true" id="box1">
+            <span>Element 1</span>
+            <input type="button" value="Edytuj">
+            <input type="button" value="Zmień kolor">
+            <input type="button" value="Usuń">
+          </div>
+        </div>
+        <br><br>    
+        <textarea class="area-text" rows="7">
+// ===== LOGIKA KAFELKÓW OPARTA NA TABLICY =====
+const container = document.getElementById("container");
+const addBtn = document.getElementById("addBtn");
+const addFrontBtn = document.getElementById("addFrontBtn");
+
+// Nasza "baza danych" w pamięci
+let boxes = [
+    { id: Date.now(), text: "Element 1", color: "#f0f0f0" }
+];
+
+let draggedId = null;
+
+// GŁÓWNA FUNKCJA RENDERUJĄCA
+function render() {
+    container.innerHTML = ""; // Czyścimy kontener przed ponownym rysowaniem
+
+    boxes.forEach((boxData, index) => {
+        const div = document.createElement("div");
+        div.className = "box";
+        div.draggable = true;
+        div.style.backgroundColor = boxData.color;
+        
+        const span = document.createElement("span");
+        span.textContent = boxData.text;
+
+        // Przycisk edycji
+        const editBtn = createButton("Edytuj", () => {
+            const newText = prompt("Podaj nowy tekst:", boxData.text);
+            if (newText) {
+                boxData.text = newText;
+                render();
+            }
+        });
+
+        // Przycisk koloru
+        const colorInput = document.createElement("input");
+        colorInput.type = "color";
+        colorInput.className = "color-picker";
+        colorInput.oninput = (e) => {
+            boxData.color = e.target.value;
+            div.style.backgroundColor = e.target.value; // Szybka aktualizacja bez pełnego renderu
+        };
+
+        const colorBtn = createButton("Zmień kolor", () => colorInput.click());
+
+        // Przycisk usuwania
+        const removeBtn = createButton("Usuń", () => {
+            boxes = boxes.filter(b => b.id !== boxData.id);
+            render();
+        });
+
+        // Eventy Drag & Drop (używając ID z tablicy)
+        div.addEventListener("dragstart", () => {
+            draggedId = boxData.id;
+            div.style.opacity = "0.5";
+        });
+
+        div.addEventListener("dragover", (e) => e.preventDefault());
+
+        div.addEventListener("drop", (e) => {
+            e.preventDefault();
+            const draggedIndex = boxes.findIndex(b => b.id === draggedId);
+            const targetIndex = index;
+            
+            // Zamiana miejsc w tablicy
+            const [removed] = boxes.splice(draggedIndex, 1);
+            boxes.splice(targetIndex, 0, removed);
+            
+            render();
+        });
+
+        div.append(span, editBtn, colorBtn, colorInput, removeBtn);
+        container.appendChild(div);
+    });
+}
+
+// Pomocnicza funkcja do tworzenia przycisków
+function createButton(label, onClick) {
+    const btn = document.createElement("input");
+    btn.type = "button";
+    btn.value = label;
+    btn.onclick = onClick;
+    return btn;
+}
+
+// Obsługa dodawania do tablicy
+function addNewBox(position = "end") {
+    const newBox = {
+        id: Date.now() + Math.random(),
+        text: `Nowy ${boxes.length + 1}`,
+        color: `hsl(${Math.random() * 360}, 70%, 80%)`
+    };
+
+    if (position === "front") boxes.unshift(newBox);
+    else boxes.push(newBox);
+    
+    render();
+}
+
+addBtn.onclick = () => addNewBox("end");
+addFrontBtn.onclick = () => addNewBox("front");
+
+// Pierwsze uruchomienie
+render();
+</textarea>
+    </div>
+    <script>
+      // ===== LOGIKA KAFELKÓW OPARTA NA TABLICY =====
+const container = document.getElementById("container");
+const addBtn = document.getElementById("addBtn");
+const addFrontBtn = document.getElementById("addFrontBtn");
+
+// Nasza "baza danych" w pamięci
+let boxes = [
+    { id: Date.now(), text: "Element 1", color: "#f0f0f0" }
+];
+
+let draggedId = null;
+
+// GŁÓWNA FUNKCJA RENDERUJĄCA
+function render() {
+    container.innerHTML = ""; // Czyścimy kontener przed ponownym rysowaniem
+
+    boxes.forEach((boxData, index) => {
+        const div = document.createElement("div");
+        div.className = "box";
+        div.draggable = true;
+        div.style.backgroundColor = boxData.color;
+        
+        const span = document.createElement("span");
+        span.textContent = boxData.text;
+
+        // Przycisk edycji
+        const editBtn = createButton("Edytuj", () => {
+            const newText = prompt("Podaj nowy tekst:", boxData.text);
+            if (newText) {
+                boxData.text = newText;
+                render();
+            }
+        });
+
+        // Przycisk koloru
+        const colorInput = document.createElement("input");
+        colorInput.type = "color";
+        colorInput.className = "color-picker";
+        colorInput.oninput = (e) => {
+            boxData.color = e.target.value;
+            div.style.backgroundColor = e.target.value; // Szybka aktualizacja bez pełnego renderu
+        };
+
+        const colorBtn = createButton("Zmień kolor", () => colorInput.click());
+
+        // Przycisk usuwania
+        const removeBtn = createButton("Usuń", () => {
+            boxes = boxes.filter(b => b.id !== boxData.id);
+            render();
+        });
+
+        // Eventy Drag & Drop (używając ID z tablicy)
+        div.addEventListener("dragstart", () => {
+            draggedId = boxData.id;
+            div.style.opacity = "0.5";
+        });
+
+        div.addEventListener("dragover", (e) => e.preventDefault());
+
+        div.addEventListener("drop", (e) => {
+            e.preventDefault();
+            const draggedIndex = boxes.findIndex(b => b.id === draggedId);
+            const targetIndex = index;
+            
+            // Zamiana miejsc w tablicy
+            const [removed] = boxes.splice(draggedIndex, 1);
+            boxes.splice(targetIndex, 0, removed);
+            
+            render();
+        });
+
+        div.append(span, editBtn, colorBtn, colorInput, removeBtn);
+        container.appendChild(div);
+    });
+}
+
+// Pomocnicza funkcja do tworzenia przycisków
+function createButton(label, onClick) {
+    const btn = document.createElement("input");
+    btn.type = "button";
+    btn.value = label;
+    btn.onclick = onClick;
+    return btn;
+}
+
+// Obsługa dodawania do tablicy
+function addNewBox(position = "end") {
+    const newBox = {
+        id: Date.now() + Math.random(),
+        text: `Nowy ${boxes.length + 1}`,
+        color: `hsl(${Math.random() * 360}, 70%, 80%)`
+    };
+
+    if (position === "front") boxes.unshift(newBox);
+    else boxes.push(newBox);
+    
+    render();
+}
+
+addBtn.onclick = () => addNewBox("end");
+addFrontBtn.onclick = () => addNewBox("front");
+
+// Pierwsze uruchomienie
+render();
+        </script>
+        <script src="js/scripts.js"></script>
+        <script src="js/data.js"></script>
+</body>
+
+</html>
+
