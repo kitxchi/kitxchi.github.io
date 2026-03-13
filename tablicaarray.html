@@ -10,7 +10,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
         <style>
-            input[type="button"] {
+            button {
   padding: 6px 10px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
@@ -53,6 +53,24 @@
     .color-picker {
       display: none;
     }
+    .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .block {
+  /* background: #eb00005b; */
+            border: 2px solid #ffffff;  
+            padding: 5px 15px;
+            border-radius: 8px;
+            display: flex;
+            color: white;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Lekko wzmocniony cień dla efektu */
+    transition: transform 0.2s; /* Dodatkowy bajer: płynne pojawianie się */
+        }
         </style>
     </head>
     <body>
@@ -65,242 +83,138 @@
             <p id="czas"></p>
         <br>              
         <h2>Tablice array</h2>
-        <p id="tekst">Zmiana tekstu nagłówka</p>
-        <input type="button" id="btnTekst" value="Zmień tekst">
-        
-        <br><br>
-        
-        <input type="text" id="imie" placeholder="Wpisz imię">
-        <input type="button" id="btnImie" value="Pokaż imię">
-        <p id="wynik"></p>
-        
-        <hr>
-        
-        <input type="button" id="addBtn" value="Wstaw element na koniec">
-        <input type="button" id="addFrontBtn" value="Wstaw na początek">
-        
-        <div id="container">
-          <div class="box" draggable="true" id="box1">
-            <span>Element 1</span>
-            <input type="button" value="Edytuj">
-            <input type="button" value="Zmień kolor">
-            <input type="button" value="Usuń">
-          </div>
+        <div class="controls">
+            <button onclick="addToFront()">Dodaj z przodu (unshift)</button>
+            <button onclick="addToMiddle()">Dodaj w środku (splice)</button>
+            <button onclick="addToEnd()">Dodaj z tyłu (push)</button>
+            <button onclick="reverseArray()">Odwróć (reverse)</button>
         </div>
+    
+        <div id="container"></div>
         <br><br>    
-        <textarea class="area-text" rows="7">
-// ===== LOGIKA KAFELKÓW OPARTA NA TABLICY =====
-const container = document.getElementById("container");
-const addBtn = document.getElementById("addBtn");
-const addFrontBtn = document.getElementById("addFrontBtn");
+        <textarea class="area-text" rows="7">  
+// Nasza główna tablica (array) przechowująca dane bloczków
+let blockArray = ["Blok 1", "Blok 2", "Blok 3"];
+let counter = 4; // Licznik do nazywania nowych bloków
 
-// Nasza "baza danych" w pamięci
-let boxes = [
-    { id: Date.now(), text: "Element 1", color: "#f0f0f0" }
-];
-
-let draggedId = null;
-
-// GŁÓWNA FUNKCJA RENDERUJĄCA
+// Funkcja renderująca tablicę na ekranie
 function render() {
-    container.innerHTML = ""; // Czyścimy kontener przed ponownym rysowaniem
+    const container = document.getElementById('container');
+    container.innerHTML = ''; // Czyścimy kontener przed ponownym rysowaniem
 
-    boxes.forEach((boxData, index) => {
-        const div = document.createElement("div");
-        div.className = "box";
-        div.draggable = true;
-        div.style.backgroundColor = boxData.color;
+    blockArray.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'block';
         
-        const span = document.createElement("span");
-        span.textContent = boxData.text;
-
-        // Przycisk edycji
-        const editBtn = createButton("Edytuj", () => {
-            const newText = prompt("Podaj nowy tekst:", boxData.text);
-            if (newText) {
-                boxData.text = newText;
-                render();
-            }
-        });
-
-        // Przycisk koloru
-        const colorInput = document.createElement("input");
-        colorInput.type = "color";
-        colorInput.className = "color-picker";
-        colorInput.oninput = (e) => {
-            boxData.color = e.target.value;
-            div.style.backgroundColor = e.target.value; // Szybka aktualizacja bez pełnego renderu
-        };
-
-        const colorBtn = createButton("Zmień kolor", () => colorInput.click());
-
-        // Przycisk usuwania
-        const removeBtn = createButton("Usuń", () => {
-            boxes = boxes.filter(b => b.id !== boxData.id);
-            render();
-        });
-
-        // Eventy Drag & Drop (używając ID z tablicy)
-        div.addEventListener("dragstart", () => {
-            draggedId = boxData.id;
-            div.style.opacity = "0.5";
-        });
-
-        div.addEventListener("dragover", (e) => e.preventDefault());
-
-        div.addEventListener("drop", (e) => {
-            e.preventDefault();
-            const draggedIndex = boxes.findIndex(b => b.id === draggedId);
-            const targetIndex = index;
-            
-            // Zamiana miejsc w tablicy
-            const [removed] = boxes.splice(draggedIndex, 1);
-            boxes.splice(targetIndex, 0, removed);
-            
-            render();
-        });
-
-        div.append(span, editBtn, colorBtn, colorInput, removeBtn);
+        // Tworzymy napis i przycisk w jednej linii
+        div.innerHTML = `
+            <span>${item}</span>
+            <button class="delete-btn" onclick="removeBlock(${index})">usun</button>
+        `;
+        
         container.appendChild(div);
     });
 }
 
-// Pomocnicza funkcja do tworzenia przycisków
-function createButton(label, onClick) {
-    const btn = document.createElement("input");
-    btn.type = "button";
-    btn.value = label;
-    btn.onclick = onClick;
-    return btn;
-}
-
-// Obsługa dodawania do tablicy
-function addNewBox(position = "end") {
-    const newBox = {
-        id: Date.now() + Math.random(),
-        text: `Nowy ${boxes.length + 1}`,
-        color: `hsl(${Math.random() * 360}, 70%, 80%)`
-    };
-
-    if (position === "front") boxes.unshift(newBox);
-    else boxes.push(newBox);
-    
+// Dodawanie na początek tablicy
+function addToFront() {
+    blockArray.unshift(`Blok ${counter++}`);
     render();
 }
 
-addBtn.onclick = () => addNewBox("end");
-addFrontBtn.onclick = () => addNewBox("front");
+// Dodawanie na koniec tablicy
+function addToEnd() {
+    blockArray.push(`Blok ${counter++}`);
+    render();
+}
 
-// Pierwsze uruchomienie
+// Dodawanie w środku tablicy
+function addToMiddle() {
+    const middleIndex = Math.floor(blockArray.length / 2);
+    blockArray.splice(middleIndex, 0, `Blok ${counter++}`);
+    render();
+}
+
+// Odwracanie kolejności w tablicy
+function reverseArray() {
+    blockArray.reverse();
+    render();
+}
+
+// Usuwanie konkretnego elementu z tablicy
+function removeBlock(index) {
+    blockArray.splice(index, 1);
+    render();
+}
+
+// Pierwsze wywołanie, żeby pokazać początkowe bloki
 render();
 </textarea>
     </div>
     <script>
-      // ===== LOGIKA KAFELKÓW OPARTA NA TABLICY =====
-const container = document.getElementById("container");
-const addBtn = document.getElementById("addBtn");
-const addFrontBtn = document.getElementById("addFrontBtn");
-
-// Nasza "baza danych" w pamięci
-let boxes = [
-    { id: Date.now(), text: "Element 1", color: "#f0f0f0" }
+        // Główna tablica przechowuje teraz obiekty: { name: string, color: string }
+let blockArray = [
+    { name: "Blok 1", color: getRandomColor() },
+    { name: "Blok 2", color: getRandomColor() },
+    { name: "Blok 3", color: getRandomColor() }
 ];
+let counter = 4;
 
-let draggedId = null;
+// Funkcja generująca losowy, przyjemny dla oka kolor
+function getRandomColor() {
+    const hue = Math.floor(Math.random() * 360);
+    return `hsla(${hue}, 70%, 45%, 0.6)`; // HSL pozwala na łatwe kontrolowanie nasycenia
+}
 
-// GŁÓWNA FUNKCJA RENDERUJĄCA
 function render() {
-    container.innerHTML = ""; // Czyścimy kontener przed ponownym rysowaniem
+    const container = document.getElementById('container');
+    container.innerHTML = '';
 
-    boxes.forEach((boxData, index) => {
-        const div = document.createElement("div");
-        div.className = "box";
-        div.draggable = true;
-        div.style.backgroundColor = boxData.color;
+    blockArray.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'block';
         
-        const span = document.createElement("span");
-        span.textContent = boxData.text;
-
-        // Przycisk edycji
-        const editBtn = createButton("Edytuj", () => {
-            const newText = prompt("Podaj nowy tekst:", boxData.text);
-            if (newText) {
-                boxData.text = newText;
-                render();
-            }
-        });
-
-        // Przycisk koloru
-        const colorInput = document.createElement("input");
-        colorInput.type = "color";
-        colorInput.className = "color-picker";
-        colorInput.oninput = (e) => {
-            boxData.color = e.target.value;
-            div.style.backgroundColor = e.target.value; // Szybka aktualizacja bez pełnego renderu
-        };
-
-        const colorBtn = createButton("Zmień kolor", () => colorInput.click());
-
-        // Przycisk usuwania
-        const removeBtn = createButton("Usuń", () => {
-            boxes = boxes.filter(b => b.id !== boxData.id);
-            render();
-        });
-
-        // Eventy Drag & Drop (używając ID z tablicy)
-        div.addEventListener("dragstart", () => {
-            draggedId = boxData.id;
-            div.style.opacity = "0.5";
-        });
-
-        div.addEventListener("dragover", (e) => e.preventDefault());
-
-        div.addEventListener("drop", (e) => {
-            e.preventDefault();
-            const draggedIndex = boxes.findIndex(b => b.id === draggedId);
-            const targetIndex = index;
-            
-            // Zamiana miejsc w tablicy
-            const [removed] = boxes.splice(draggedIndex, 1);
-            boxes.splice(targetIndex, 0, removed);
-            
-            render();
-        });
-
-        div.append(span, editBtn, colorBtn, colorInput, removeBtn);
+        // Dynamicznie ustawiamy tło z obiektu w tablicy
+        div.style.backgroundColor = item.color;
+        
+        div.innerHTML = `
+            <span>${item.name}</span>
+            <button class="delete-btn" onclick="removeBlock(${index})">usun</button>
+        `;
+        
         container.appendChild(div);
     });
 }
 
-// Pomocnicza funkcja do tworzenia przycisków
-function createButton(label, onClick) {
-    const btn = document.createElement("input");
-    btn.type = "button";
-    btn.value = label;
-    btn.onclick = onClick;
-    return btn;
-}
-
-// Obsługa dodawania do tablicy
-function addNewBox(position = "end") {
-    const newBox = {
-        id: Date.now() + Math.random(),
-        text: `Nowy ${boxes.length + 1}`,
-        color: `hsl(${Math.random() * 360}, 70%, 80%)`
-    };
-
-    if (position === "front") boxes.unshift(newBox);
-    else boxes.push(newBox);
-    
+// Przy dodawaniu tworzymy obiekt z nazwą i nowym kolorem
+function addToFront() {
+    blockArray.unshift({ name: `Blok ${counter++}`, color: getRandomColor() });
     render();
 }
 
-addBtn.onclick = () => addNewBox("end");
-addFrontBtn.onclick = () => addNewBox("front");
+function addToEnd() {
+    blockArray.push({ name: `Blok ${counter++}`, color: getRandomColor() });
+    render();
+}
 
-// Pierwsze uruchomienie
+function addToMiddle() {
+    const middleIndex = Math.floor(blockArray.length / 2);
+    blockArray.splice(middleIndex, 0, { name: `Blok ${counter++}`, color: getRandomColor() });
+    render();
+}
+
+function reverseArray() {
+    blockArray.reverse();
+    render();
+}
+
+function removeBlock(index) {
+    blockArray.splice(index, 1);
+    render();
+}
+
 render();
-        </script>
+    </script>
         <script src="js/scripts.js"></script>
         <script src="js/data.js"></script>
 </body>
