@@ -94,7 +94,7 @@
         <br><br>    
         <textarea class="area-text" rows="7">  
 // Nasza główna tablica (array) przechowująca dane bloczków
-let blockArray = ["Blok 1", "Blok 2", "Blok 3"];
+let blockArray = ["0", "1", "2"];
 let counter = 4; // Licznik do nazywania nowych bloków
 
 // Funkcja renderująca tablicę na ekranie
@@ -118,20 +118,20 @@ function render() {
 
 // Dodawanie na początek tablicy
 function addToFront() {
-    blockArray.unshift(`Blok ${counter++}`);
+    blockArray.unshift(`${counter++}`);
     render();
 }
 
 // Dodawanie na koniec tablicy
 function addToEnd() {
-    blockArray.push(`Blok ${counter++}`);
+    blockArray.push(`${counter++}`);
     render();
 }
 
 // Dodawanie w środku tablicy
 function addToMiddle() {
     const middleIndex = Math.floor(blockArray.length / 2);
-    blockArray.splice(middleIndex, 0, `Blok ${counter++}`);
+    blockArray.splice(middleIndex, 0, `${counter++}`);
     render();
 }
 
@@ -154,11 +154,13 @@ render();
     <script>
         // Główna tablica przechowuje teraz obiekty: { name: string, color: string }
 let blockArray = [
-    { name: "Blok 1", color: getRandomColor() },
-    { name: "Blok 2", color: getRandomColor() },
-    { name: "Blok 3", color: getRandomColor() }
+    { name: "0", color: getRandomColor() },
+    { name: "1", color: getRandomColor() },
+    { name: "2", color: getRandomColor() },
+    { name: "3", color: getRandomColor() },
+    { name: "4", color: getRandomColor() }
 ];
-let counter = 4;
+let counter = 5;
 
 // Funkcja generująca losowy, przyjemny dla oka kolor
 function getRandomColor() {
@@ -188,18 +190,18 @@ function render() {
 
 // Przy dodawaniu tworzymy obiekt z nazwą i nowym kolorem
 function addToFront() {
-    blockArray.unshift({ name: `Blok ${counter++}`, color: getRandomColor() });
+    blockArray.unshift({ name: `${counter++}`, color: getRandomColor() });
     render();
 }
 
 function addToEnd() {
-    blockArray.push({ name: `Blok ${counter++}`, color: getRandomColor() });
+    blockArray.push({ name: `${counter++}`, color: getRandomColor() });
     render();
 }
 
 function addToMiddle() {
     const middleIndex = Math.floor(blockArray.length / 2);
-    blockArray.splice(middleIndex, 0, { name: `Blok ${counter++}`, color: getRandomColor() });
+    blockArray.splice(middleIndex, 0, { name: `${counter++}`, color: getRandomColor() });
     render();
 }
 
